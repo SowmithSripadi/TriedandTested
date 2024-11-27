@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
+import Image from "./Image";
+import { Link } from "react-router-dom";
+import {
+  SignInButton,
+  SignedOut,
+  SignedIn,
+  UserButton,
+} from "@clerk/clerk-react";
 
 function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -21,14 +29,14 @@ function Navbar() {
   };
   return (
     <div className="w-full flex justify-between h-16 md:h-20 items-center">
-      <div className="">
+      <Link to="/" className="">
         {/* Logo */}
         {theme === "light" ? (
-          <img src="../../logo.png" className="w-[150px ] h-[40px]" />
+          <Image src="/logo.png" alt="logo in black" w="150px" h="40px" />
         ) : (
-          <img src="../../logoDark.png" className="w-[150px] h-[40px]" />
+          <Image src="/logoDark.png" alt="logo in white" w="150px" h="40px" />
         )}
-      </div>
+      </Link>
       {/* mobile menu  */}
       <div className="md:hidden">
         <div
@@ -42,28 +50,33 @@ function Navbar() {
             open ? "left-0" : "left-[100%]"
           } transition-all ease-in-out gap-8`}
         >
-          <a href="">Home</a>
-          <a href="">Trending</a>
-          <a href="">Most Popular</a>
-          <a href="">About</a>
-          <a href="">
+          <Link to="/">Home</Link>
+          <Link to="">Trending</Link>
+          <Link to="">Most Popular</Link>
+          <Link to="">About</Link>
+          <Link to="">
             <button className="bg-[#53535c] text-white p-2 px-4 rounded-2xl">
               Login
             </button>
-          </a>
+          </Link>
         </div>
       </div>
       {/* desktop menu */}
       <div className="hidden md:flex items-center gap-8 xl:gap-12 ">
-        <a href="">Home</a>
-        <a href="">Trending</a>
-        <a href="">Most Popular</a>
-        <a href="">About</a>
-        <a href="">
-          <button className="bg-[#53535c] text-white p-2 px-4 rounded-2xl">
-            Login
-          </button>
-        </a>
+        <Link to="">Home</Link>
+        <Link to="">Trending</Link>
+        <Link to="">Most Popular</Link>
+        <Link to="">About</Link>
+        <SignedOut>
+          <Link to="/login">
+            <button className="bg-[#53535c] text-white p-2 px-4 rounded-2xl">
+              Login
+            </button>
+          </Link>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
 
       {/* <button
