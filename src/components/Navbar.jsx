@@ -32,21 +32,29 @@ function Navbar() {
       <Link to="/" className="">
         {/* Logo */}
         {theme === "light" ? (
-          <Image src="/logo.png" alt="logo in black" w="150px" h="40px" />
+          <img
+            src="/logo.png"
+            alt="logo in black"
+            className="w-[150px] h-[40px]"
+          />
         ) : (
-          <Image src="/logoDark.png" alt="logo in white" w="150px" h="40px" />
+          <img
+            src="/logoDark.png"
+            alt="logo in black"
+            className="w-[150px] h-[40px]"
+          />
         )}
       </Link>
       {/* mobile menu  */}
       <div className="md:hidden">
         <div
-          className="cursor-pointer"
+          className="cursor-pointer z-10"
           onClick={() => setOpen((prev) => (prev = !prev))}
         >
           {open === true ? <IoMdCloseCircleOutline /> : <RxHamburgerMenu />}
         </div>
         <div
-          className={`w-full h-screen flex flex-col items-center justify-center absolute top-16  ${
+          className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 bg-white ${
             open ? "left-0" : "left-[100%]"
           } transition-all ease-in-out gap-8`}
         >
@@ -79,12 +87,12 @@ function Navbar() {
         </SignedIn>
       </div>
 
-      {/* <button
+      <button
         className="bg-white dark:bg-gray-400 dark:text-gray-800  p-2 rounded-lg"
         onClick={toggleTheme}
       >
         ToggleDarkmode
-      </button> */}
+      </button>
     </div>
   );
 }

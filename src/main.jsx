@@ -4,7 +4,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, Login, Post, PostList, Register, Write } from "./pages";
 import MainLayout from "./components/MainLayout";
-import { ClerkProvider } from "@clerk/clerk-react";
+import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/clerk-react";
+import Loading from "./pages/Loading";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
@@ -46,7 +47,12 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <RouterProvider router={router} />
+      <ClerkLoading>
+        <Loading />
+      </ClerkLoading>
+      <ClerkLoaded>
+        <RouterProvider router={router} />
+      </ClerkLoaded>
     </ClerkProvider>
   </StrictMode>
 );
