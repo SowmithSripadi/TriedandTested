@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { LiaFeatherAltSolid } from "react-icons/lia";
 import MainCategories from "../components/MainCategories";
+import FeaturedPosts from "../components/FeaturedPosts";
+import PostList from "../components/PostList";
 
 function Home() {
   return (
@@ -10,7 +12,7 @@ function Home() {
       <div className="flex gap-4">
         <Link to="/">Home</Link>
         <span>•</span>
-        <span className="text-gray-500">Blogs and Articles</span>
+        <Link className="text-gray-500 border-b-2">Blogs and Articles</Link>
       </div>
       {/* Introduction */}
       <div className="flex items-center justify-center">
@@ -40,7 +42,12 @@ function Home() {
       {/* Main category */}
       <MainCategories />
       {/* top posts */}
+      <FeaturedPosts />
       {/* posts lists */}
+      <div className="">
+        <h1 className="my-8 text-2xl text-gray-600">Recent Posts</h1>
+        <PostList />
+      </div>
     </div>
   );
 }
