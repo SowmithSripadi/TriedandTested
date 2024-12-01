@@ -4,7 +4,7 @@ import { RiSearch2Line } from "react-icons/ri";
 
 function MainCategories() {
   return (
-    <div className="hidden md:flex bg-gray-300  rounded-2xl p-4 shadow-lg items-center justify-center gap-8 text-black ">
+    <div className="hidden md:flex bg-gray-300 dark:bg-gray-500  rounded-2xl p-4 shadow-lg items-center justify-center gap-8 text-black ">
       {/* Links */}
       <div className="flex-1 flex items-center justify-between flex-wrap">
         <Link to="/posts" className="bg-[#fbe3e8] rounded-2xl px-4 py-2 ">
