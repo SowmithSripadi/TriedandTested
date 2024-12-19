@@ -14,14 +14,14 @@ function Post() {
           <h1 className="text-xl md:text-3xl xl:text-4xl 2xl:text-5xl font-semibold">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
           </h1>
-          <div className="flex items-center gap-2 text-gray-400 text-sm">
+          <div className="flex items-center gap-2 text-gray-500 dark:text-gray-200 text-sm">
             <span>Written by</span>
             <Link className="text-gray-500 border-b-2">John Doe</Link>
             <span>on</span>
             <Link className="text-gray-500 border-b-2 ">Categ</Link>
             <span>2 days ago</span>
           </div>
-          <p className="text-gray-500 font-medium">
+          <p className="text-gray-500 dark:text-gray-400 font-medium">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam modi
             cum soluta provident nobis commodi voluptatem animi labore
           </p>

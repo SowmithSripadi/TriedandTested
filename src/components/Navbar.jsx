@@ -9,17 +9,24 @@ import {
   SignedIn,
   UserButton,
 } from "@clerk/clerk-react";
+import { MdDarkMode } from "react-icons/md";
+import DarkModeButton from "./DarkModeButton";
 
 function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [open, setOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
 
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
+      setIsChecked(true);
     } else {
       root.classList.remove("dark");
+      setIsChecked(false);
     }
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -77,7 +84,7 @@ function Navbar() {
         <Link to="">About</Link>
         <SignedOut>
           <Link to="/login">
-            <button className="bg-[#53535c] text-white p-2 px-4 rounded-2xl">
+            <button className="dark:bg-[#53535c] bg-gray-300 text-w≈hite p-2 px-4 rounded-2xl">
               Login
             </button>
           </Link>
@@ -85,14 +92,14 @@ function Navbar() {
         <SignedIn>
           <UserButton />
         </SignedIn>
+        <div className="flex items-center justify-center gap-4">
+          <DarkModeButton
+            handleThemeChange={toggleTheme}
+            isChecked={isChecked}
+          />
+          <MdDarkMode className="w-5 h-5" />
+        </div>
       </div>
-
-      <button
-        className="bg-white dark:bg-gray-400 dark:text-gray-800  p-2 rounded-lg"
-        onClick={toggleTheme}
-      >
-        ToggleDarkmode
-      </button>
     </div>
   );
 }
