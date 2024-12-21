@@ -2,6 +2,7 @@ import { useUser } from "@clerk/clerk-react";
 import React from "react";
 import Loading from "../pages/Loading";
 import TestUserLogin from "./TestUserLogin";
+import ReactQuill from "react-quill";import 'react-quill/dist/quill.snow.css';
 
 function Write() {
   const { isLoaded, isSignedIn } = useUser();
@@ -36,7 +37,7 @@ function Write() {
           <select
             name="category"
             id=""
-            className="dark:bg-gray-800 bg-gray-200 dark:border-2 dark:border-gray-300 p-1 rounded-lg"
+            className="dark:bg-gray-800 border-2 border-gray-300 p-1 rounded-lg"
           >
             <option value="Health">Health</option>
             <option value="Fitness">Fitness</option>
@@ -47,6 +48,14 @@ function Write() {
           name="desc"
           placeholder="A short description"
           className="w-full p-2 rounded-lg dark:bg-gray-700"
+        />
+        <ReactQuill theme="snow" className="w-full h-96" 
+        style={{
+          '--ql-toolbar-background': '#4B5563', // bg-gray-600
+          '--ql-toolbar-color': '#FFFFFF',     // text-white
+          '--ql-editor-background': '#1F2937', // bg-gray-800
+          '--ql-editor-color': '#FFFFFF',      // text-white
+        }}
         />
       </form>
     </div>
