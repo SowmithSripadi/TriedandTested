@@ -2,7 +2,8 @@ import { useUser } from "@clerk/clerk-react";
 import React from "react";
 import Loading from "../pages/Loading";
 import TestUserLogin from "./TestUserLogin";
-import ReactQuill from "react-quill";import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill-new";
+import 'react-quill-new/dist/quill.snow.css';
 
 function Write() {
   const { isLoaded, isSignedIn } = useUser();
@@ -22,15 +23,15 @@ function Write() {
     );
 
   return (
-    <div className="">
+    <div className="md:h-[calc(100vh-80px)] h-[calc(100vh-64px)]">
       <h1 className="mb-6">Create a new Post</h1>
-      <form className="flex flex-col items-start gap-6">
-        <button className="bg-secondaryColor text-black px-4 py-1 rounded-lg border-2 border-gray-400 ">
+      <form className="flex flex-col gap-6 flex-1 mb-6">
+        <button className="bg-secondaryColor text-black px-4 py-1 rounded-lg border-2 border-gray-400 w-max">
           Add a cover image
         </button>
         <input
           placeholder="Write a title here..."
-          className="w-full dark:bg-black text-3xl focus:outline-none focus:ring-0"
+          className=" dark:bg-black text-3xl focus:outline-none focus:ring-0"
         />
         <div className="flex gap-4 items-center">
           <label htmlFor="">Choose a category:</label>
@@ -47,16 +48,11 @@ function Write() {
         <textarea
           name="desc"
           placeholder="A short description"
-          className="w-full p-2 rounded-lg dark:bg-gray-700"
+          className="p-2 rounded-lg dark:bg-gray-700 bg-gray-200"
         />
-        <ReactQuill theme="snow" className="w-full h-96" 
-        style={{
-          '--ql-toolbar-background': '#4B5563', // bg-gray-600
-          '--ql-toolbar-color': '#FFFFFF',     // text-white
-          '--ql-editor-background': '#1F2937', // bg-gray-800
-          '--ql-editor-color': '#FFFFFF',      // text-white
-        }}
-        />
+        
+        <ReactQuill theme="snow"  className="flex-1 rounded-xl"/>  
+      <button className="bg-secondaryColor text-black w-max px-8 py-2 rounded-lg">Send</button>
       </form>
     </div>
   );

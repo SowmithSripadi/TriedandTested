@@ -41,30 +41,15 @@ body {
   }
 }
 
-/* .dark .ql-toolbar {
-  @apply bg-gray-700 text-white;
-}
-
-.dark .ql-editor {
-  @apply bg-gray-800 text-white;
+.ql-snow {
+  @apply dark:text-white;
 }
 
 .ql-toolbar {
-  background-color: var(--ql-toolbar-background, #4B5563); /
-  color: var(--ql-toolbar-color, #FFFFFF);
+  @apply dark:bg-gray-300;
+   border-color: gray;
 }
 
-.ql-toolbar button,
-.ql-toolbar .ql-picker-label {
-  color: var(--ql-toolbar-color, #FFFFFF);
+.ql-container {
+  border-color: gray;
 }
-
-.ql-toolbar button:hover,
-.ql-toolbar .ql-picker-label:hover {
-  color: #E5E7EB; 
-}
-
-.ql-editor {
-  background-color: var(--ql-editor-background, #1F2937);
-  color: var(--ql-editor-color, #FFFFFF);
-} */
