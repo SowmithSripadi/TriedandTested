@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, Login, Post, PostList, Register, Write } from "./pages";
+import { Home, Login, Post, PostListPage, Register, Write } from "./pages";
 import MainLayout from "./components/MainLayout";
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/clerk-react";
 import Loading from "./pages/Loading";
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/posts",
-        element: <PostList />,
+        element: <PostListPage />,
       },
       {
         path: "/:slug",

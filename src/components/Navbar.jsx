@@ -16,7 +16,7 @@ function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [open, setOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(
-    localStorage.getItem("theme") === "dark"
+    localStorage.getItem("theme") === "dark",
   );
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function Navbar() {
           {open === true ? <IoMdCloseCircleOutline /> : <RxHamburgerMenu />}
         </div>
         <div
-          className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 bg-white ${
+          className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 dark:bg-black bg-white ${
             open ? "left-0" : "left-[100%]"
           } transition-all ease-in-out gap-8`}
         >
@@ -74,6 +74,13 @@ function Navbar() {
               Login
             </button>
           </Link>
+          <div className="flex items-center justify-center gap-4">
+            <DarkModeButton
+              handleThemeChange={toggleTheme}
+              isChecked={isChecked}
+            />
+            <MdDarkMode className="w-5 h-5" />
+          </div>
         </div>
       </div>
       {/* desktop menu */}

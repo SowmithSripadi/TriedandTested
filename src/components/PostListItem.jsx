@@ -3,15 +3,15 @@ import Image from "./Image";
 import { Link } from "react-router-dom";
 function PostListItem() {
   return (
-    <div className="flex flex-col  lg:flex-row gap-8">
-      <div className="lg:w-1/2 xl:w-1/3 lg:flex lg:items-center lg:justify-center">
+    <div className="flex flex-col lg:flex-row gap-8 mb-12 ">
+      <div className="md:w-1/2 xl:w-1/3 lg:flex sm:w-1/2 lg:items-start lg:justify-start">
         <Image
           src="postImg.jpeg"
-          className="rounded-2xl object-cover lg:w-[400px] lg:h-[270px] sm:w-[300px] sm:h-[200px]"
+          className="rounded-2xl object-cover"
           w="735"
         />
       </div>
-      <div className="flex flex-col gap-4 lg:w-1/2 xl:w-2/3 ">
+      <div className="flex flex-col gap-4 lg:w-2/3  w-full">
         <Link to="/test" className="sm:text-2xl text-4xl font-semibold">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </Link>

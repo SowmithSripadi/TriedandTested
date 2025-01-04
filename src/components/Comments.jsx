@@ -3,7 +3,7 @@ import Comment from "../components/Comment";
 
 function Comments() {
   return (
-    <div className="flex flex-col gap-8 w-3/5">
+    <div className="flex flex-col gap-8 md:w-3/5 w-full">
       <h1 className="text-xl text-gray-500 underline"></h1>
       <div className="flex items-center justify-between gap-4 w-full">
         <textarea
