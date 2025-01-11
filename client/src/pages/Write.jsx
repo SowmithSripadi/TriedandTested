@@ -2,8 +2,6 @@ import { useUser } from "@clerk/clerk-react";
 import React from "react";
 import Loading from "./Loading";
 import TestUserLogin from "./TestUserLogin";
-import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.snow.css";
 
 function Write() {
   const { isLoaded, isSignedIn } = useUser();
@@ -51,7 +49,7 @@ function Write() {
           className="p-2 rounded-lg dark:bg-gray-700 bg-gray-200"
         />
 
-        <ReactQuill theme="snow" className="flex-1 rounded-xl" />
+        {/* <ReactQuill theme="snow" className="flex-1 rounded-xl" /> */}
         <button className="bg-secondaryColor text-black w-max px-8 py-2 rounded-lg">
           Send
         </button>
