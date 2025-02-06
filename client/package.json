@@ -11,14 +11,15 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.17.1",
-    "@tiptap/core": "^2.11.0",
-    "@tiptap/react": "^2.11.0",
     "imagekitio-react": "^4.2.0",
-    "jodit": "^4.2.47",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^7.0.1",
+    "slate": "^0.112.0",
+    "slate-history": "^0.110.3",
+    "slate-react": "^0.112.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
