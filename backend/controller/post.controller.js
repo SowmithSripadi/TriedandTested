@@ -24,3 +24,11 @@ export const createPost = async (req, res) => {
     res.status(500).json({ message: "Error", error: err });
   }
 };
+
+export const deletePost = async (req, res) => {
+  const delPost = await Post.findByIdAndDelete(req.params.id);
+  if (!delPost) {
+    return res.status(500).json({ message: "No post found" });
+  }
+  return res.status(200).json({ message: "deleted!!", data: delPost });
+};
