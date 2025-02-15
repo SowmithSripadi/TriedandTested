@@ -12,6 +12,7 @@ export const getslugPosts = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
+  // const clerkUserId = req.auth.userId
   const { img, title, slug, desc, content, isFeatured, visit } = req.body;
   if (!img || !title || !slug || !desc || !content || !isFeatured || !visit) {
     return res.status(400).json({ message: "All fields are required" });

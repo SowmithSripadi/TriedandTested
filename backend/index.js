@@ -5,11 +5,25 @@ import commentRouter from "./routes/comment.routes.js";
 import connectDB from "./lib/connectDB.js";
 import webhookRouter from "./routes/webhook.routes.js";
 import "dotenv/config";
+import { clerkMiddleware, requireAuth } from "@clerk/express";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use("/webhooks", webhookRouter);
+app.use(clerkMiddleware());
+
+app.get("/test1", requireAuth(), (req, res) => {
+  const { userId } = req.auth;
+  if (!userId) {
+    return res.status(404).json({
+      mesage: "User not authenticated",
+    });
+  }
+  return res.status(200).json({
+    userid: userId,
+  });
+});
 
 app.use(express.json());
 app.use((error, req, res, next) => {
