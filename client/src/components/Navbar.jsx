@@ -8,6 +8,7 @@ import {
   SignedOut,
   SignedIn,
   UserButton,
+  useAuth,
 } from "@clerk/clerk-react";
 import { MdDarkMode } from "react-icons/md";
 import DarkModeButton from "./DarkModeButton";
@@ -16,10 +17,13 @@ function Navbar() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [open, setOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(
-    localStorage.getItem("theme") === "dark",
+    localStorage.getItem("theme") === "dark"
   );
 
+  const { getToken } = useAuth();
+
   useEffect(() => {
+    getToken().then((token) => console.log(token));
     const root = window.document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
