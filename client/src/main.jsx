@@ -6,7 +6,9 @@ import { Home, Login, Post, PostListPage, Register, Write } from "./pages";
 import MainLayout from "./components/MainLayout";
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/clerk-react";
 import Loading from "./pages/Loading";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing publishable key");
@@ -47,12 +49,14 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <ClerkLoading>
-        <Loading />
-      </ClerkLoading>
-      <ClerkLoaded>
-        <RouterProvider router={router} />
-      </ClerkLoaded>
+      <QueryClientProvider client={queryClient}>
+        <ClerkLoading>
+          <Loading />
+        </ClerkLoading>
+        <ClerkLoaded>
+          <RouterProvider router={router} />
+        </ClerkLoaded>
+      </QueryClientProvider>
     </ClerkProvider>
-  </StrictMode>
+  </StrictMode>,
 );
