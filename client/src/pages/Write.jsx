@@ -6,20 +6,38 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { OrbitProgress } from "react-loading-indicators";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Write() {
   const { isLoaded, isSignedIn } = useUser();
   const { getToken } = useAuth();
   const [value, setValue] = useState("");
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async (newPost) => {
       const token = await getToken();
-      return axios.post("/posts", newPost, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      // console.log(token);
+      return await axios.post(
+        `${import.meta.env.VITE_API_URL}/posts`,
+        newPost,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
+    },
+    onSuccess: (res) => {
+      toast.success("Post created successfully");
+      navigate(`/${res.data.post.slug}`);
+    },
+    onError: (error) => {
+      toast.error(
+        `An error occurred ${error?.response?.data?.message || error?.message}`,
+      );
     },
   });
 
@@ -45,7 +63,8 @@ function Write() {
       desc: formData.get("desc"),
       content: value,
     };
-    console.log(data);
+    // console.log(data);
+    mutation.mutate(data);
   };
   return (
     <div className="md:h-[calc(100vh-80px)] h-[calc(100vh-64px)]">
@@ -86,8 +105,15 @@ function Write() {
           onChange={setValue}
         />
 
-        <button className="bg-secondaryColor text-black w-max px-8 py-2 rounded-lg">
-          Send
+        <button
+          disabled={mutation.isPending}
+          className="bg-secondaryColor text-black w-20 h-10 flex items-center justify-center rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed"
+        >
+          {mutation.isPending ? (
+            <div className="w-5 h-5 aspect-square border-4 border-gray-700 border-t-gray-400 rounded-full animate-spin"></div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 export const getPosts = async (req, res) => {
   const posts = await Post.find();
-  console.log(posts);
+  // console.log(posts);
   res.status(200).json(posts);
 };
 
@@ -14,7 +14,7 @@ export const getslugPosts = async (req, res) => {
 
 export const createPost = async (req, res) => {
   const clerkUserId = req.auth.userId;
-  console.log(req.headers);
+  // console.log(req.headers);
 
   if (!clerkUserId) {
     return res.status(401).json("Not Authenticated");
@@ -25,17 +25,32 @@ export const createPost = async (req, res) => {
     return res.status(404).json("User not found");
   }
 
-  const { img, title, slug, desc, content, isFeatured, visit } = req.body;
-  if (!img || !title || !slug || !desc || !content || !isFeatured || !visit) {
+  const { title, desc, content, isFeatured, visit } = req.body;
+  if (!title || !desc || !content) {
     return res.status(400).json({ message: "All fields are required" });
   }
-  try {
-    const newPost = new Post({ user: user._id, ...req.body });
-    const post = await newPost.save();
-    res.status(200).json({ message: "Post received", data: post });
-  } catch (err) {
-    res.status(500).json({ message: "Error", error: err });
+
+  let slug = title.replace(/ /g, "-").toLowerCase();
+  let existingPosts = await Post.findOne({ slug });
+  let counter = 2;
+  while (existingPosts) {
+    slug = `${slug}-${counter}`;
+    existingPosts = await Post.findOne({ slug });
+    counter++;
   }
+
+  const samePost = await Post.findOne({
+    user: user._id,
+    desc: desc,
+    content: content,
+  });
+  if (samePost) {
+    return res.status(400).json({ message: "Same post found" });
+  }
+
+  const newPost = new Post({ user: user._id, slug, ...req.body });
+  const post = await newPost.save();
+  res.status(200).json({ message: "Post received", post });
 };
 
 export const deletePost = async (req, res) => {
